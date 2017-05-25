@@ -28,7 +28,7 @@ ms.suite: ems
 
 *Applies to: Advanced Threat Analytics version 1.7*
 
-
+{
 
 # ATA disaster recovery
 This article describes how to quickly recover your ATA Center and restore ATA functionality when the ATA Center functionality is lost but the ATA Gateways are still working. 
@@ -63,7 +63,7 @@ ATA Gateways again. When prompted for a certificate, provide the certificate you
         3. Run this command to remove the default system profile: `db.SystemProfile.remove({})`
     2. Run the command: `mongoimport.exe --db ATA --collection SystemProfile --file "<SystemProfile.json backup file>" --upsert` using the backup file from step 1.</br>
     For a full explanation of how to locate and import backup files, see [Export and import the ATA configuration](ata-configuration-file.md). 
-    3. After importing, run this command to remove some of the default system profiles (to reset them for the new environment): `db.SystemProfile.remove({$or:[{"_t":"DetectorProfile"}, "_t":"DirectoryServicesSystemProfile"}]}) `
+    3. After importing, run this command to remove some of the default system profiles (to reset them for the new environment): `db.SystemProfile.remove({$or:[{"_t":"DetectorProfile"}, {"_t":"DirectoryServicesSystemProfile"}]}) `
     4. Open the ATA Console. You should see all the ATA Gateways linked under the Configuration/Gateways tab. 
     5. Make sure to define a [**Directory services user**](install-ata-step2.md) and to choose a [**Domain controller synchronizer**](install-ata-step5.md). 
 
